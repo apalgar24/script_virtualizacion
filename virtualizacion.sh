@@ -60,11 +60,11 @@ sleep 5
 clear
 
 #3.2 Activar usuario debian a sudoers sin contraseña
-echo "Activando usuario debian a sudoers sin contraseña"
-ssh debian@$ip "sudo apt install sudo -y"
-ssh debian@$ip "echo 'debian ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d"
-sleep 3
-clear
+#echo "Activando usuario debian a sudoers sin contraseña"
+#ssh debian@$ip "sudo apt install sudo -y"
+#ssh debian@$ip "echo 'debian ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d"
+#sleep 3
+#clear
 
 #4. Crea un volumen adicional de 1 GiB de tamaño en formato RAW ubicado en el pool por defecto
 echo "Creando volumen adicional"
@@ -102,12 +102,12 @@ read
 clear
 
 #8. Instala LXC y crea un linux container llamado container1.
-#echo "Instalando LXC"
-#ssh debian@$ip sudo apt install lxc -y 
-#echo "Creando container1"
-#ssh debian@$ip sudo lxc-create -t download -n container1 -- -d debian -r buster -a amd64 
-#sleep 5
-#clear
+echo "Instalando LXC"
+ssh debian@$ip sudo apt install lxc -y 
+echo "Creando container1"
+ssh debian@$ip sudo lxc-create -t download -n container1 -- -d debian -r buster -a amd64 
+sleep 5
+clear
 
 #9. Añade una nueva interfaz a la máquina virtual para conectarla a la red pública (al punte br0).
 echo "Apagando máquina.."
