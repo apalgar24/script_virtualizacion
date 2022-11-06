@@ -105,7 +105,7 @@ clear
 echo "Instalando LXC"
 ssh debian@$ip sudo apt install lxc -y 
 echo "Creando container1"
-ssh debian@$ip sudo lxc-create -t download -n container1 -- -d debian -r buster -a amd64 
+ssh debian@$ip sudo lxc-create -n contenedor1 -t debian -- -r bullseye
 sleep 5
 clear
 
