@@ -60,11 +60,11 @@ sleep 5
 clear
 
 #3.2 Activar usuario debian a sudoers sin contraseña
-#echo "Activando usuario debian a sudoers sin contraseña"
-#ssh debian@$ip "sudo apt install sudo -y"
-#ssh debian@$ip "echo 'debian ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d"
-#sleep 3
-#clear
+echo "Activando usuario debian a sudoers sin contraseña"
+ssh debian@$ip "sudo apt install sudo -y"
+ssh debian@$ip "echo 'debian ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d"
+sleep 3
+clear
 
 #4. Crea un volumen adicional de 1 GiB de tamaño en formato RAW ubicado en el pool por defecto
 echo "Creando volumen adicional"
