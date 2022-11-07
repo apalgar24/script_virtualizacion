@@ -103,30 +103,30 @@ clear
 
 #8. Instala LXC y crea un linux container llamado container1.
 echo "Instalando LXC"
-ssh debian@$ip sudo apt install lxc -y 
+ssh debian@$ip sudo apt install lxc -y > /dev/null 2>&1
 echo "Creando container1"
-ssh debian@$ip sudo lxc-create -n contenedor1 -t debian -- -r bullseye
+ssh debian@$ip sudo lxc-create -n contenedor1 -t debian -- -r bullseye > /dev/null 2>&1
 sleep 5
 clear
 
 #9. Añade una nueva interfaz a la máquina virtual para conectarla a la red pública (al punte br0).
 echo "Apagando máquina.."
-virsh -c qemu:///system shutdown $nombrevm &> /dev/null
-sleep 5
+virsh -c qemu:///system shutdown $nmaquina &> /dev/null
+sleep 10
 
 ## Añadimos la nueva interfaz (br0)
 
 echo "Añadiendo nueva interfaz (br0)"
-virsh -c qemu:///system attach-interface $nombrevm bridge br0 --model virtio --persistent --config &> /dev/null
+virsh -c qemu:///system attach-interface $nmaquina bridge br0 --model virtio --persistent --config &> /dev/null 2>&1
 echo "La intefaz br0 ha sido asociada exitosamente."
 sleep 2
 
 ## Iniciamos la máquina
 
 echo "Iniciando máquina..."
-virsh -c qemu:///system start $nombrevm &> /dev/null
+virsh -c qemu:///system start $nmaquina &> /dev/null
 sleep 15
-ssh debian@$ip "sudo -- bash -c 'echo "allow-hotplug enp2s0" >> /etc/network/interfaces && echo "iface enp2s0 inet dhcp" >> /etc/network/interfaces'"
+ssh debian@$ip "sudo -- bash -c 'echo "allow-hotplug enp9s0" >> /etc/network/interfaces && echo "iface enp9s0 inet dhcp" >> /etc/network/interfaces'"
 sleep 3
 ssh debian@$ip sudo dhclient -r && sudo dhclient
 # MOSTRAR IP DE LA NUEVA INTERFAZ-----------------------------------------------------------------------
